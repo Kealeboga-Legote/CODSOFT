@@ -16,15 +16,17 @@ def multiplication(x,y):
     return x*y
 
 print("Welcome to Kealeboga's Calculator!")
-first_int = int(input("Enter first number:"))
-second_int = int(input("Enter second number:"))
 
-print("1. Addition (+)" + "\n" +
+print(" This calculator can perform 4 basic operations." + "\n" + "\n" +
+      "1. Addition (+)" + "\n" +
       "2. Subtraction (-)" + "\n" +
       "3. Multiplication (x)" + "\n" +
-      "4. Division (÷)")
+      "4. Division (÷)" + "\n" +
+      "5. Exit")
 operation = int(input("Select the number of the operation you wish to perfom:").strip())
 
+first_int = int(input("Enter first number:"))
+second_int = int(input("Enter second number:"))
 
 if operation == 1:
     print("The answer is: ", addition(first_int, second_int))
