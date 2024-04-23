@@ -23,7 +23,8 @@ print("1. Addition (+)" + "\n" +
       "2. Subtraction (-)" + "\n" +
       "3. Multiplication (x)" + "\n" +
       "4. Division (÷)")
-operation = input("Select the number of the operation you wish to perfom:").split()
+operation = int(input("Select the number of the operation you wish to perfom:").strip())
+
 
 if operation == 1:
     print("The answer is: ", addition(first_int, second_int))
