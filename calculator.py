@@ -43,49 +43,45 @@ def options():
 
 
 def selectionSwitchCase(option):
+    first_int = int(input("Enter first number:"))
+    second_int = int(input("Enter second number:"))
     if option == 1:
-        first_int = int(input("Enter first number:"))
-        second_int = int(input("Enter second number:"))
         return str(addition(first_int, second_int))
     elif option == 2:
-        first_int = int(input("Enter first number:"))
-        second_int = int(input("Enter second number:"))
         return str(subtraction(first_int, second_int))
     elif option == 3:
-        first_int = int(input("Enter first number:"))
-        second_int = int(input("Enter second number:"))
         return str(multiplication(first_int, second_int))
     elif option == 4:
-        first_int = int(input("Enter first number:"))
-        second_int = int(input("Enter second number:"))
         return str(division(first_int, second_int))
     
 
     
     
 selection = options() 
-
-
-if selection == 5:
-    print("You have choosen to exit." + "\n" +
-          "Bye!")
-    exit()  
-
-elif selection == None:
-    print("\n" + "You have made an invalid selection. Please try again" + "\n" )   
-    selection = options()  
-else:
-    ans = selectionSwitchCase(selection)
-    print("The answer is:",ans)
-    reCalc = int(input("Would you like to perform another calculation?" + "\n" +  "yes - (1) OR no - (0): "))
-    if reCalc == 1:
-        selection = options()
-    elif reCalc == 0:
+isExit= False
+while isExit==False:
+    if selection == 5:
         print("You have choosen to exit." + "\n" +
-          "Bye!")
-        exit()
+            "Bye!")
+        isExit=True
+        exit()  
+
+    elif selection == None:
+        print("\n" + "You have made an invalid selection. Please try again" + "\n" )   
+        selection = options()  
     else:
-        print("\n" + "You have made an invalid selection. Please try again" + "\n" )
+        ans = selectionSwitchCase(selection)
+        print("The answer is:",ans)
+        reCalc = int(input("Would you like to perform another calculation?" + "\n" +  "yes - (1) OR no - (0): "))
+        if reCalc == 1:
+            selection = options()
+        elif reCalc == 0:
+            print("You have choosen to exit." + "\n" +
+            "Bye!")
+            isExit=True
+            exit()
+        else:
+            print("\n" + "You have made an invalid selection. Please try again" + "\n" )
     
 
   
