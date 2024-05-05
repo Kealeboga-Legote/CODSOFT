@@ -1,3 +1,4 @@
+import pickle
 myTasks= []
 
 def addTask(item):
@@ -19,6 +20,19 @@ def showTasks():
     else:
             print("Your To-Do List is empty")
 
+def saveList(filePath, toDoList):
+    with open(filePath, 'wb') as listFile:
+        pickle.dump(toDoList, listFile)
+
+def loadListFromFile(filePath):
+    try:
+        with open(filePath, 'rb') as listFile:
+            return pickle.load(listFile)
+    except FileNotFoundError:
+        return []
+
+filePath = 'toDoList.pkl'
+
 print("Welcome to your To-Do list")
 print("Here are your current tasks:")
 
@@ -27,7 +41,7 @@ def userInput():
             "(2) Remove a task" + "\n" +
             "(3) Show current tasks" + "\n" +
             "(4) Exit" + "\n" )
-      operation = int(input("Select the number of the operation you wish to perfom:"))
+      operation = int(input("Select the number of the acion you choose to do:"))
       validOptions = [1,2,3,4]
       if operation in validOptions:
         return operation
@@ -45,6 +59,7 @@ def selectionSwitchCase(option):
         showTasks()
 
 selection = userInput() 
+loaded = loadListFromFile(filePath)
 isExit= False
 while isExit==False:
     if selection == 4:
@@ -56,12 +71,13 @@ while isExit==False:
         print("\n" + "You have made an invalid selection. Please try again" + "\n" )   
         selection = userInput()
     else:
-        ans = selectionSwitchCase(selection)
-        print("The answer is:",ans)
-        reCalc = int(input("Would you like to perform another calculation?" + "\n" +  "yes - (1) OR no - (0): "))
+        selectionSwitchCase(selection)
+       
+        reCalc = int(input("Would you like to Add, Remove or Show tasks?" + "\n" +  "yes - (1) OR no - (0): "))
         if reCalc == 1:
             selection = userInput()
         elif reCalc == 0:
+            saveList(filePath)
             print("You have choosen to exit." + "\n" +
             "Bye!")
             isExit=True
