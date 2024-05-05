@@ -36,56 +36,57 @@ class ToDoList:
             pickle.dump(toDoList, listFile)
 
 def main():
-    todoList = ToDoList()
+    classConstructor = ToDoList()
+    filePath = 'todoList.pkl'
 
-print("Welcome to your To-Do list")
-print("Here are your current tasks:")
+    print("Welcome to your To-Do list")
+    print("Here are your current tasks:")
 
-def userInput():
-      print("(1) Add a Task" + "\n" +
-            "(2) Remove a task" + "\n" +
-            "(3) Show current tasks" + "\n" +
-            "(4) Exit" + "\n" )
-      operation = int(input("Select the number of the acion you choose to do:"))
-      validOptions = [1,2,3,4]
-      if operation in validOptions:
-        return operation
-      else:
-          return None
-      
-def selectionSwitchCase(option):
-    if option == 1:
-        userTask = input("Enter new task:")
-        addTask(userTask)
-    elif option == 2:
-        userTask = input("Enter task to remove:")
-        removeTask(userTask)
-    elif option == 3:
-        showTasks()
+    def userInput():
+        print("(1) Add a Task" + "\n" +
+                "(2) Remove a task" + "\n" +
+                "(3) Show current tasks" + "\n" +
+                "(4) Exit" + "\n" )
+        operation = int(input("Select the number of the acion you choose to do:"))
+        validOptions = [1,2,3,4]
+        if operation in validOptions:
+            return operation
+        else:
+            return None
+        
+    def selectionSwitchCase(option):
+        if option == 1:
+            userTask = input("Enter new task:")
+            classConstructor.addTask(userTask)
+        elif option == 2:
+            userTask = input("Enter task to remove:")
+            classConstructor.removeTask(userTask)
+        elif option == 3:
+            classConstructor.showTasks()
 
-selection = userInput() 
-loaded = loadListFromFile(filePath)
-isExit= False
-while isExit==False:
-    if selection == 4:
-        print("You have choosen to exit." + "\n" +
-            "Bye!")
-        isExit=True
-        exit()
-    elif selection == None:
-        print("\n" + "You have made an invalid selection. Please try again" + "\n" )   
-        selection = userInput()
-    else:
-        selectionSwitchCase(selection)
-       
-        reCalc = int(input("Would you like to Add, Remove or Show tasks?" + "\n" +  "yes - (1) OR no - (0): "))
-        if reCalc == 1:
-            selection = userInput()
-        elif reCalc == 0:
-            saveList(filePath)
+    selection = userInput() 
+    loaded = loadListFromFile(filePath)
+    isExit= False
+    while isExit==False:
+        if selection == 4:
             print("You have choosen to exit." + "\n" +
-            "Bye!")
+                "Bye!")
             isExit=True
             exit()
+        elif selection == None:
+            print("\n" + "You have made an invalid selection. Please try again" + "\n" )   
+            selection = userInput()
         else:
-            print("\n" + "You have made an invalid selection. Please try again" + "\n" )
+            selectionSwitchCase(selection)
+        
+            reCalc = int(input("Would you like to Add, Remove or Show tasks?" + "\n" +  "yes - (1) OR no - (0): "))
+            if reCalc == 1:
+                selection = userInput()
+            elif reCalc == 0:
+                saveList(filePath)
+                print("You have choosen to exit." + "\n" +
+                "Bye!")
+                isExit=True
+                exit()
+            else:
+                print("\n" + "You have made an invalid selection. Please try again" + "\n" )
