@@ -11,7 +11,7 @@ print("Welcome to the PASSWORD GENERATOR")
 passwordLength = int(input("Specify the desired length of the password: "))
 
 randomSpecial = ""
-specials ="!@#$^%&*_:;.,><~"
+specials ="!@#$%&*_.><~"
 for k in range(passwordLength):
     randomSpecial = randomSpecial + random.choice(string.ascii_letters + specials + string.digits)
 
