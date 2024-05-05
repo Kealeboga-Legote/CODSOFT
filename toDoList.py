@@ -1,37 +1,42 @@
 import pickle
-myTasks= []
 
-def addTask(item):
-    myTasks.append(item)
-    print("Task added successfully")
+class ToDoList:
 
-def removeTask(item):
-    if item in myTasks:
-        myTasks.remove(item)
-        print("Task removed successfully")
-    else:
-        print("Task not found")
+    def __init__(self):
+        self.tasks = []
 
-def showTasks():
-    if myTasks:
-        print("Your To-Do List:")
-        for index, task in enumerate(myTasks, start=1):
-            print(f"{index}. {task}")
-    else:
-            print("Your To-Do List is empty")
+    def loadListFromFile(filePath):
+        try:
+            with open(filePath, 'rb') as listFile:
+                return pickle.load(listFile)
+        except FileNotFoundError:
+            return []
 
-def saveList(filePath, toDoList):
-    with open(filePath, 'wb') as listFile:
-        pickle.dump(toDoList, listFile)
+    def addTask(self, item):
+        self.tasks.append(item)
+        print("Task added successfully")
 
-def loadListFromFile(filePath):
-    try:
-        with open(filePath, 'rb') as listFile:
-            return pickle.load(listFile)
-    except FileNotFoundError:
-        return []
+    def removeTask(self, item):
+        if item in self.tasks:
+            self.tasks.remove(item)
+            print("Task removed successfully")
+        else:
+            print("Task not found")
 
-filePath = 'toDoList.pkl'
+    def showTasks(self):
+        if self.tasks:
+            print("Your To-Do List:")
+            for index, task in enumerate(self.tasks, start=1):
+                print(f"{index}. {task}")
+        else:
+                print("Your To-Do List is empty")
+
+    def saveList(filePath, toDoList):
+        with open(filePath, 'wb') as listFile:
+            pickle.dump(toDoList, listFile)
+
+def main():
+    todoList = ToDoList()
 
 print("Welcome to your To-Do list")
 print("Here are your current tasks:")
