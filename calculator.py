@@ -1,4 +1,5 @@
 import math
+import sys
 
 def subtraction (x,y):
     return x -y
@@ -10,30 +11,92 @@ def division(x,y):
     if y == 0:
         return "Error! Cannot divide by 0"
     else:
-        return x/y
+        if x%y != 0:
+            wholeNum = x//y
+            rem = x%y
+            floating = x/y
+            return str(wholeNum) + " with a remainder of " + str(rem) + " OR " + str(floating) 
+        else:
+            return x//y      
 
 def multiplication(x,y):
     return x*y
 
-print("Welcome to Kealeboga's Calculator!")
+print("Welcome to THE BASIC CALCULATOR!")
+print("This calculator can perform 4 basic operations." + "\n"  )
+ 
 
-print(" This calculator can perform 4 basic operations." + "\n" + "\n" +
-      "1. Addition (+)" + "\n" +
-      "2. Subtraction (-)" + "\n" +
-      "3. Multiplication (x)" + "\n" +
-      "4. Division (÷)" + "\n" +
-      "5. Exit")
-operation = int(input("Select the number of the operation you wish to perfom:").strip())
+def options():
+      
+      print("(1) Addition (+)" + "\n" +
+      "(2) Subtraction (-)" + "\n" +
+      "(3) Multiplication (x)" + "\n" +
+      "(4) Division (÷)" + "\n" +
+      "(5) Exit" + "\n")
+      operation = int(input("Select the number of the operation you wish to perfom:"))
+      validOptions = [1,2,3,4,5]
+      if operation in validOptions:
+        return operation
+      else:
+          return None
+      
 
-first_int = int(input("Enter first number:"))
-second_int = int(input("Enter second number:"))
 
-if operation == 1:
-    print("The answer is: ", addition(first_int, second_int))
-elif operation == 2:
-    print("The answer is: ", subtraction(first_int, second_int))
-elif operation == 3:
-    print("The answer is: ", multiplication(first_int,second_int))
+def selectionSwitchCase(option):
+    if option == 1:
+        first_int = int(input("Enter first number:"))
+        second_int = int(input("Enter second number:"))
+        return str(addition(first_int, second_int))
+    elif option == 2:
+        first_int = int(input("Enter first number:"))
+        second_int = int(input("Enter second number:"))
+        return str(subtraction(first_int, second_int))
+    elif option == 3:
+        first_int = int(input("Enter first number:"))
+        second_int = int(input("Enter second number:"))
+        return str(multiplication(first_int, second_int))
+    elif option == 4:
+        first_int = int(input("Enter first number:"))
+        second_int = int(input("Enter second number:"))
+        return str(division(first_int, second_int))
+    
+
+    
+    
+selection = options() 
+
+
+if selection == 5:
+    print("You have choosen to exit." + "\n" +
+          "Bye!")
+    exit()  
+
+elif selection == None:
+    print("\n" + "You have made an invalid selection. Please try again" + "\n" )   
+    selection = options()  
 else:
-    print("The answer is: ", division(first_int, second_int))
+    ans = selectionSwitchCase(selection)
+    print("The answer is:",ans)
+    reCalc = int(input("Would you like to perform another calculation?" + "\n" +  "yes - (1) OR no - (0): "))
+    if reCalc == 1:
+        selection = options()
+    elif reCalc == 0:
+        print("You have choosen to exit." + "\n" +
+          "Bye!")
+        exit()
+    else:
+        print("\n" + "You have made an invalid selection. Please try again" + "\n" )
+    
+
+  
+
+
+
+        
+
+
+
+
+
+
 
