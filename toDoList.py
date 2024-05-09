@@ -5,7 +5,7 @@ class ToDoList:
     def __init__(self):
         self.tasks = []
 
-    def loadListFromFile(filePath):
+    def loadListFromFile(self, filePath):
         try:
             with open(filePath, 'rb') as listFile:
                 return pickle.load(listFile)
@@ -29,19 +29,23 @@ class ToDoList:
             for index, task in enumerate(self.tasks, start=1):
                 print(f"{index}. {task}")
         else:
-                print("Your To-Do List is empty")
+                print("\n" + "Your To-Do List is empty" + "\n")
 
     def saveList(filePath, toDoList):
         with open(filePath, 'wb') as listFile:
             pickle.dump(toDoList, listFile)
 
 def main():
+
     classConstructor = ToDoList()
     filePath = 'todoList.pkl'
 
+    classConstructor.loadListFromFile(filePath)
+
     print("Welcome to your To-Do list")
     print("Here are your current tasks:")
-
+    classConstructor.showTasks()
+    
     def userInput():
         print("(1) Add a Task" + "\n" +
                 "(2) Remove a task" + "\n" +
@@ -65,7 +69,7 @@ def main():
             classConstructor.showTasks()
 
     selection = userInput() 
-    loaded = loadListFromFile(filePath)
+   
     isExit= False
     while isExit==False:
         if selection == 4:
@@ -79,14 +83,17 @@ def main():
         else:
             selectionSwitchCase(selection)
         
-            reCalc = int(input("Would you like to Add, Remove or Show tasks?" + "\n" +  "yes - (1) OR no - (0): "))
+            reCalc = int(input("\n" + "Would you like to Add, Remove or Show tasks?" + "\n" +  "yes - (1) OR no - (0): "))
             if reCalc == 1:
                 selection = userInput()
             elif reCalc == 0:
-                saveList(filePath)
+                classConstructor.saveList(filePath)
                 print("You have choosen to exit." + "\n" +
                 "Bye!")
                 isExit=True
                 exit()
             else:
                 print("\n" + "You have made an invalid selection. Please try again" + "\n" )
+
+if __name__ == "__main__":
+    main()
