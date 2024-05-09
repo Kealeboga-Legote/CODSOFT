@@ -81,10 +81,11 @@ def main():
         else:
             selectionSwitchCase(selection)
         
-            reCalc = int(input("\n" + "Would you like to Add, Remove or Show tasks?" + "\n" +  "yes - (1) OR no - (0): "))
-            if reCalc == 1:
+            reCalc = input("\n" + "Would you like to Add, Remove or Show tasks?" + "\n" +  "yes - (1) OR no - (0): ")
+            intRecalc = classConstructor.checkIntInput(reCalc)
+            if intRecalc == 1:
                 selection = userInput()
-            elif reCalc == 0:
+            elif intRecalc == 0:
                 
                 print("You have choosen to exit." + "\n" +
                 "Bye!")
