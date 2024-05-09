@@ -5,12 +5,7 @@ class ToDoList:
     def __init__(self):
         self.tasks = []
 
-    def loadListFromFile(self, filePath):
-        try:
-            with open(filePath, 'rb') as listFile:
-                return pickle.load(listFile)
-        except FileNotFoundError:
-            return []
+    
 
     def addTask(self, item):
         self.tasks.append(item)
@@ -38,17 +33,12 @@ class ToDoList:
         else:
                 print("\n" + "Your To-Do List is empty" + "\n")
 
-    def saveList(filePath, toDoList):
-        with open(filePath, 'wb') as listFile:
-            pickle.dump(toDoList, listFile)
+    
 
 def main():
 
     classConstructor = ToDoList()
-    filePath = 'todoList.pkl'
-
-    classConstructor.loadListFromFile(filePath)
-
+   
     print("Welcome to your To-Do list")
     print("Here are your current tasks:")
     classConstructor.showTasks()
@@ -95,7 +85,7 @@ def main():
             if reCalc == 1:
                 selection = userInput()
             elif reCalc == 0:
-                classConstructor.saveList(filePath)
+                
                 print("You have choosen to exit." + "\n" +
                 "Bye!")
                 isExit=True
