@@ -22,6 +22,13 @@ def division(x,y):
 def multiplication(x,y):
     return x*y
 
+def checkIntInput(input):
+        try:
+            intValue = int(input)
+            return intValue
+        except ValueError:
+            return "Error: Please enter a valid number input"
+
 print("Welcome to THE BASIC CALCULATOR!")
 print("This calculator can perform 4 basic operations." + "\n"  )
  
@@ -33,10 +40,11 @@ def options():
       "(3) Multiplication (x)" + "\n" +
       "(4) Division (÷)" + "\n" +
       "(5) Exit" + "\n")
-      operation = int(input("Select the number of the operation you wish to perfom:"))
+      operation = input("Select the number of the operation you wish to perfom:")
       validOptions = [1,2,3,4,5]
-      if operation in validOptions:
-        return operation
+      result = checkIntInput(operation)
+      if result in validOptions:
+        return result
       else:
           return None
       

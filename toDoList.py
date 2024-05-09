@@ -15,6 +15,13 @@ class ToDoList:
     def addTask(self, item):
         self.tasks.append(item)
         print("Task added successfully")
+    
+    def checkIntInput(self, input):
+        try:
+            intValue = int(input)
+            return intValue
+        except ValueError:
+            return "Error: Please enter a valid number input"
 
     def removeTask(self, item):
         if item in self.tasks:
@@ -51,10 +58,11 @@ def main():
                 "(2) Remove a task" + "\n" +
                 "(3) Show current tasks" + "\n" +
                 "(4) Exit" + "\n" )
-        operation = int(input("Select the number of the acion you choose to do:"))
+        operation = input("Select the number of the acion you choose to do:")
         validOptions = [1,2,3,4]
-        if operation in validOptions:
-            return operation
+        result = classConstructor.checkIntInput(operation)
+        if result in validOptions:
+            return result
         else:
             return None
         
@@ -78,7 +86,7 @@ def main():
             isExit=True
             exit()
         elif selection == None:
-            print("\n" + "You have made an invalid selection. Please try again" + "\n" )   
+            print("\n" + "You have made an invalid selection. Please choose again" + "\n" )   
             selection = userInput()
         else:
             selectionSwitchCase(selection)
